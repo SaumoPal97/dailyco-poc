@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
-import { Alert, Button, ThemeProvider } from "evergreen-ui";
+import { Alert, Button, ThemeProvider, TextInput } from "evergreen-ui";
 import Call from "../components/Call";
 import theme from "../styles/theme";
 
@@ -8,6 +8,7 @@ export default function Home() {
   const [creatingRoom, setCreatingRoom] = useState(false);
   const [error, setError] = useState();
   const [roomUrl, setRoomUrl] = useState();
+  const [name, setName] = useState(null);
 
   async function handleCreateRoom() {
     setCreatingRoom(true);
@@ -34,13 +35,21 @@ export default function Home() {
         <title>Daily JS - Pagination Demo</title>
       </Head>
 
-      {!roomUrl ? (
+      {!name || !roomUrl ? (
         <main>
           {error && (
             <Alert intent="danger" title="Unable to create new room">
               {error}
             </Alert>
           )}
+          <TextInput
+            name="text-input-name"
+            id="username"
+            placeholder="Enter name..."
+            value={name}
+            onChange={(evt) => setName(evt.target.value)}
+            style={{ marginBottom: "10px" }}
+          />
           <Button
             onClick={() => handleCreateRoom()}
             isLoading={creatingRoom}
@@ -51,7 +60,7 @@ export default function Home() {
           </Button>
         </main>
       ) : (
-        <Call roomUrl={roomUrl} />
+        <Call roomUrl={roomUrl} name={name} />
       )}
     </ThemeProvider>
   );

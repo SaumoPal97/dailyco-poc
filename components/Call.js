@@ -19,7 +19,7 @@ import { TrackProvider } from "../contexts/TracksProvider";
 import PaginatedGrid from "./PaginatedGrid";
 import Sidebar from "./Sidebar";
 
-export const Call = ({ roomUrl }) => {
+export const Call = ({ roomUrl, name }) => {
   const [callObject, setCallObject] = useState(null);
   const [callState, setCallState] = useState("joining");
   const [showSidebar, setShowSidebar] = useState(false);
@@ -31,7 +31,7 @@ export const Call = ({ roomUrl }) => {
       await callObject.join({
         url: roomUrl,
         subscribeToTracksAutomatically: false,
-        userName: generateName(),
+        userName: name,
         audioSource: false,
       });
       await callObject.setNetworkTopology({ topology: "sfu" });
