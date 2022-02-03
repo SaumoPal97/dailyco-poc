@@ -28,8 +28,8 @@ export default async function handler(req, res) {
     // }
 
     return res.status(200).json({
-      name: "testing",
-      url: "https://saumo-pal.daily.co/testing",
+      name: "poc-saumo",
+      url: `https://${process.env.DAILY_DOMAIN}/poc-saumo`,
       domain: process.env.DAILY_DOMAIN,
     });
   }

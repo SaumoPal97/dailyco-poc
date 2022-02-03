@@ -27,16 +27,28 @@ export const Call = ({ roomUrl, name }) => {
 
   const join = useCallback(
     async (callObject) => {
+      // const res = await fetch("/api/createMeetingToken", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ name }),
+      // });
+      // const { token: newToken, error } = await res.json();
+
+      // if (!error) {
       await callObject.join({
         url: roomUrl,
         subscribeToTracksAutomatically: false,
         userName: name,
         audioSource: false,
+        token: newToken,
       });
       await callObject.setNetworkTopology({ topology: "sfu" });
 
       setLocalVideo(callObject.localVideo());
     },
+    // },
     [roomUrl]
   );
 
