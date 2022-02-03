@@ -42,7 +42,7 @@ export const Call = ({ roomUrl, name }) => {
         subscribeToTracksAutomatically: false,
         userName: name,
         audioSource: false,
-        token: newToken,
+        // token: newToken,
       });
       await callObject.setNetworkTopology({ topology: "sfu" });
 
