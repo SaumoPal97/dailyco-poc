@@ -13,8 +13,8 @@ export default async function handler(req, res) {
         properties: {
           room_name: "poc-saumo",
           user_name: name,
-          start_video_off: parseInt(name) > 2,
-          start_audio_off: parseInt(name) > 2,
+          start_video_off: parseInt(name) > 6,
+          start_audio_off: parseInt(name) > 6,
         },
       }),
     };
