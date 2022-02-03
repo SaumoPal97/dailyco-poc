@@ -47,6 +47,9 @@ export const Aside = () => {
         <Table.TextCell>Participant</Table.TextCell>
         <Table.TextCell>Subscription status</Table.TextCell>
       </Table.Head>
+      <Table.Row key={"total"} height="auto" padding={12}>
+        <Table.TextCell>{participants.length}</Table.TextCell>
+      </Table.Row>
       {sortedParticipants.map((p) => {
         return (
           <Table.Row key={p.id} height="auto" padding={12}>
