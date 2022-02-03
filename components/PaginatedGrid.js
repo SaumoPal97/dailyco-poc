@@ -108,17 +108,19 @@ export const PaginatedGrid = ({ autoLayers }) => {
   // Note: using a deep compare here so visible participants are memoized
   const tiles = useDeepCompareMemo(
     () =>
-      visibleParticipants.map((p) => (
-        <Tile
-          participant={p}
-          key={p.id}
-          autoLayers={autoLayers}
-          style={{
-            maxHeight: tileHeight,
-            maxWidth: tileWidth,
-          }}
-        />
-      )),
+      visibleParticipants
+        .sort((a, b) => parseInt(a.userName) - parseInt(b.userName))
+        .map((p) => (
+          <Tile
+            participant={p}
+            key={p.id}
+            autoLayers={autoLayers}
+            style={{
+              maxHeight: tileHeight,
+              maxWidth: tileWidth,
+            }}
+          />
+        )),
     [tileWidth, tileHeight, autoLayers, visibleParticipants]
   );
 
