@@ -10,7 +10,8 @@ export const Aside = () => {
 
   // Sort participants by their position in the grid
   const sortedParticipants = useMemo(
-    () => participants.sort((a, b) => sortByKey(a, b, "position")),
+    () =>
+      participants.sort((a, b) => parseInt(a.userName) - parseInt(b.userName)),
     [participants]
   );
 
