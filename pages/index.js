@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import Script from "next/script";
 import { Alert, Button, ThemeProvider, TextInput } from "evergreen-ui";
 import Call from "../components/Call";
 import theme from "../styles/theme";
@@ -31,6 +32,21 @@ export default function Home() {
 
   return (
     <ThemeProvider value={theme}>
+      <Script src="https://raw.githubusercontent.com/paulirish/memory-stats.js/master/memory-stats.js" />
+      <Script id="show-banner" strategy="lazyOnload">
+        {` var stats = new MemoryStats();
+
+          stats.domElement.style.position = 'fixed';
+          stats.domElement.style.right        = '0px';
+          stats.domElement.style.bottom       = '0px';
+        
+          document.body.appendChild( stats.domElement );
+
+          requestAnimationFrame(function rAFloop(){
+            stats.update();
+            requestAnimationFrame(rAFloop);
+          });`}
+      </Script>
       <Head>
         <title>Daily JS - Pagination Demo</title>
       </Head>
