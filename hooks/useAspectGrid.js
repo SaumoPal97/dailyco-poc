@@ -8,7 +8,7 @@ export const DEFAULT_ASPECT_RATIO = 16 / 9;
 export const useAspectGrid = (
   gridRef,
   numTiles,
-  customMaxTilesPerPage = 12
+  customMaxTilesPerPage = 16
 ) => {
   // -- State
   const [dimensions, setDimensions] = useState({ width: 1, height: 1 });

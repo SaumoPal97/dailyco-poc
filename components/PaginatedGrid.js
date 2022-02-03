@@ -127,39 +127,39 @@ export const PaginatedGrid = ({ autoLayers }) => {
   /**
    * Handle position updates based on active speaker events
    */
-  const handleActiveSpeakerChange = useCallback(
-    (peerId) => {
-      if (!peerId) return;
-      // active participant is already visible
-      if (visibleParticipants.some(({ id }) => id === peerId)) return;
-      // ignore repositioning when viewing page > 1
-      if (page > 1) return;
+  // const handleActiveSpeakerChange = useCallback(
+  //   (peerId) => {
+  //     if (!peerId) return;
+  //     // active participant is already visible
+  //     if (visibleParticipants.some(({ id }) => id === peerId)) return;
+  //     // ignore repositioning when viewing page > 1
+  //     if (page > 1) return;
 
-      /**
-       * We can now assume that
-       * a) the user is looking at page 1
-       * b) the most recent active participant is not visible on page 1
-       * c) we'll have to promote the most recent participant's position to page 1
-       *
-       * To achieve that, we'll have to
-       * - find the least recent active participant on page 1
-       * - swap least & most recent active participant's position via setParticipantPosition
-       */
-      const sortedVisibleRemoteParticipants = visibleParticipants
-        .filter(({ isLocal }) => !isLocal)
-        .sort((a, b) => sortByKey(a, b, "lastActiveDate"));
+  //     /**
+  //      * We can now assume that
+  //      * a) the user is looking at page 1
+  //      * b) the most recent active participant is not visible on page 1
+  //      * c) we'll have to promote the most recent participant's position to page 1
+  //      *
+  //      * To achieve that, we'll have to
+  //      * - find the least recent active participant on page 1
+  //      * - swap least & most recent active participant's position via setParticipantPosition
+  //      */
+  //     const sortedVisibleRemoteParticipants = visibleParticipants
+  //       .filter(({ isLocal }) => !isLocal)
+  //       .sort((a, b) => sortByKey(a, b, "lastActiveDate"));
 
-      if (!sortedVisibleRemoteParticipants.length) return;
+  //     if (!sortedVisibleRemoteParticipants.length) return;
 
-      swapParticipantPosition(sortedVisibleRemoteParticipants[0].id, peerId);
-    },
-    [page, swapParticipantPosition, visibleParticipants]
-  );
+  //     swapParticipantPosition(sortedVisibleRemoteParticipants[0].id, peerId);
+  //   },
+  //   [page, swapParticipantPosition, visibleParticipants]
+  // );
 
-  useEffect(() => {
-    if (page > 1 || !activeParticipantId) return;
-    handleActiveSpeakerChange(activeParticipantId);
-  }, [activeParticipantId, handleActiveSpeakerChange, page]);
+  // useEffect(() => {
+  //   if (page > 1 || !activeParticipantId) return;
+  //   handleActiveSpeakerChange(activeParticipantId);
+  // }, [activeParticipantId, handleActiveSpeakerChange, page]);
 
   // -- Receive settings
 
@@ -172,7 +172,7 @@ export const PaginatedGrid = ({ autoLayers }) => {
     }
 
     const count = visibleParticipants.length;
-    const layer = count < 5 ? 2 : count < 10 ? 1 : 0;
+    const layer = count < 5 ? 1 : count < 10 ? 1 : 1;
     const receiveSettings = visibleParticipants.reduce(
       (settings, participant) => {
         if (participant.id === "local") return settings;

@@ -13,7 +13,6 @@ import {
   Pane,
   IconButton,
 } from "evergreen-ui";
-import generateName from "sillyname";
 import { ParticipantProvider } from "../contexts/ParticipantProvider";
 import { TrackProvider } from "../contexts/TracksProvider";
 import PaginatedGrid from "./PaginatedGrid";

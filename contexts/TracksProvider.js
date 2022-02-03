@@ -27,7 +27,7 @@ export const TrackProvider = ({ callObject, children }) => {
     () =>
       participants
         .filter((p) => Boolean(p.lastActiveDate) && !p.isLocal)
-        .sort((a, b) => sortByKey(a, b, "lastActiveDate"))
+        .sort((a, b) => parseInt(a.userName) - parseInt(b.userName))
         .slice(-MAX_RECENT_SPEAKER_COUNT)
         .map((p) => p.id)
         .reverse(),
